@@ -1,4 +1,3 @@
-#!/usr/bin/ruby
 # frozen_string_literal: true
 require 'thor'
 require 'fog/softlayer'
@@ -44,10 +43,9 @@ module Softlayer
     desc 'show', 'Show details of a particular server by id or IP address'
     method_option :attribute, desc: 'Print only the value of the given attribute', enum: KNOWN_ATTRIBUTES
     def show(id)
-      server = begin
-                 IPAddr.new(id)
-                 servers.get_by_ip(id.dup.extend(Blank)) #
-               rescue
+      server = if ip_address?(id)
+                 servers.get_by_ip(id.dup.extend(Blank))
+               else
                  servers.get(id)
                end
 
@@ -69,6 +67,10 @@ module Softlayer
         softlayer_username: ENV.fetch('SOFTLAYER_API_USER'),
         softlayer_api_key: ENV.fetch('SOFTLAYER_API_KEY'),
       ).servers
+    end
+
+    def ip_address?(id)
+      IPAddr.new(id) rescue false
     end
   end
 end
