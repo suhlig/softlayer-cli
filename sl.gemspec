@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "softlayer/cli"
+require "softlayer/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "softlayer-cli"
-  spec.version       = Softlayer::CLI::VERSION
+  spec.version       = Softlayer::VERSION
   spec.authors       = ["Steffen Uhlig"]
   spec.email         = ["Steffen.Uhlig@de.ibm.com"]
 
@@ -28,8 +28,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "thor"
+  spec.add_dependency 'fog-softlayer'
+  spec.add_dependency 'terminal-table'
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "rubocop"
 end
