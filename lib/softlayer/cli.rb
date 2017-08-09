@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'thor'
-require 'softlayer/vpn'
-require 'softlayer/servers'
+require 'softlayer/cli/vpn'
+require 'softlayer/cli/servers'
 
 module Softlayer
   class CLI < Thor
