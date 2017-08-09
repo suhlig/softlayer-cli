@@ -1,3 +1,4 @@
 #!/usr/bin/ruby
-require "softlayer/cli"
+# frozen_string_literal: true
+require 'softlayer/cli'
 Softlayer::CLI.start(ARGV)

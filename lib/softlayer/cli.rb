@@ -1,15 +1,16 @@
+# frozen_string_literal: true
 require 'thor'
-require "softlayer/vpn"
-require "softlayer/servers"
+require 'softlayer/vpn'
+require 'softlayer/servers'
 
 module Softlayer
   class CLI < Thor
-    VERSION = "0.0.1"
+    VERSION = '0.0.1'
 
-    desc "vpn SUBCOMMAND ...ARGS", "manage VPN connections"
-    subcommand "vpn", VPN
+    desc 'vpn SUBCOMMAND ...ARGS', 'manage VPN connections'
+    subcommand 'vpn', VPN
 
-    desc "servers SUBCOMMAND ...ARGS", "manage VPN connections"
-    subcommand "servers", Servers
+    desc 'servers SUBCOMMAND ...ARGS', 'manage VPN connections'
+    subcommand 'servers', Servers
   end
 end
