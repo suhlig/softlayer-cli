@@ -40,6 +40,24 @@ module Softlayer
       end
     end
 
+    desc 'destroy', 'Destroy one or more servers by id'
+    def destroy(*ids)
+      ids.each do |id|
+        server = servers.get(id)
+
+        unless server.id
+          warn "Server #{id} already cancelled."
+          next
+        end
+
+        if server.destroy
+          puts "Cancellation initiated for #{server.name} (#{server.private_ip_address})"
+        else
+          warn "Error cancelling server with id #{id}"
+        end
+      end
+    end
+
     desc 'show', 'Show details of a particular server by id or IP address'
     method_option :attribute, desc: 'Print only the value of the given attribute', enum: KNOWN_ATTRIBUTES
     def show(id)
