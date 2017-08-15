@@ -7,4 +7,4 @@ require 'rubocop/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 RuboCop::RakeTask.new
 
-task default: :spec
+task default: ['rubocop:auto_correct', :spec]
