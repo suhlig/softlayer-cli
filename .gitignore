@@ -1,3 +1,8 @@
+
+# rspec failure tracking
+.envrc
+.rake_t_cache
+.rspec_status
 /.bundle/
 /.yardoc
 /Gemfile.lock
@@ -7,7 +12,3 @@
 /pkg/
 /spec/reports/
 /tmp/
-
-# rspec failure tracking
-.rspec_status
-.envrc

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'thor'
 require 'fog/softlayer'
 require 'terminal-table'
@@ -16,9 +17,9 @@ module Softlayer
     # TODO: --format=json with
     # class_option :format
 
-    KNOWN_ATTRIBUTES = %w(id name private_ip_address public_ip_address
+    KNOWN_ATTRIBUTES = %w[id name private_ip_address public_ip_address
                           bare_metal created_at modify_date datacenter
-                          hourly_billing_flag tags ssh_password state).freeze
+                          hourly_billing_flag tags ssh_password state].freeze
 
     desc 'list', 'Lists all servers'
     method_options tags: []
@@ -42,7 +43,7 @@ module Softlayer
 
     desc 'destroy', 'Destroy one or more servers by id'
     def destroy(*ids)
-      ids.each do |id|
+      results = ids.map do |id|
         server = servers.get(id)
 
         unless server.id
@@ -52,9 +53,17 @@ module Softlayer
 
         if server.destroy
           puts "Cancellation initiated for #{server.name} (#{server.private_ip_address})"
+          true
         else
           warn "Error cancelling server with id #{id}"
+          false
         end
+      end
+
+      if results.all? { |r| !!r }
+        true
+      else
+        exit 1
       end
     end
 
