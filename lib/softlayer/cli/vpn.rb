@@ -3,6 +3,7 @@
 require 'thor'
 require 'shellwords'
 require 'socket'
+require 'English'
 
 module Softlayer
   class VPN < Thor
