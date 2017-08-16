@@ -3,8 +3,7 @@
 require 'spec_helper'
 require 'softlayer/cli/servers'
 
-# rubocop:disable Metrics/BlockLength
-describe 'sl servers command' do
+describe 'sl servers destroy' do
   subject(:servers) { Softlayer::Servers.new }
   let(:list) { double }
 

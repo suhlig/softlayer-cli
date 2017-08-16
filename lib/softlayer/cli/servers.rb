@@ -24,7 +24,7 @@ module Softlayer
     desc 'list', 'Lists all servers'
     method_options tags: []
     def list
-      candidates = if options[:tags].any?
+      candidates = if options[:tags]&.any?
                      servers.tagged_with(options[:tags])
                    else
                      servers
