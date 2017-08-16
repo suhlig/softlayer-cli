@@ -17,9 +17,9 @@ module Softlayer
     # TODO: --format=json with
     # class_option :format
 
-    KNOWN_ATTRIBUTES = %w[id name private_ip_address public_ip_address
+    KNOWN_ATTRIBUTES = %w(id name private_ip_address public_ip_address
                           bare_metal created_at modify_date datacenter
-                          hourly_billing_flag tags ssh_password state].freeze
+                          hourly_billing_flag tags ssh_password state).freeze
 
     desc 'list', 'Lists all servers'
     method_options tags: []
