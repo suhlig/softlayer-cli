@@ -30,10 +30,12 @@ describe 'sl networks list' do
       allow(list).to receive(:get).with(11).and_return(network_11)
       allow(network_11).to receive(:id).and_return(11)
       allow(network_11).to receive(:name).and_return('network_11')
+      allow(network_11).to receive(:tags).and_return(['Spider', 'Kumonga'])
 
       allow(list).to receive(:get).with(42).and_return(network_42)
       allow(network_42).to receive(:id).and_return(42)
       allow(network_42).to receive(:name).and_return('network_42')
+      allow(network_42).to receive(:tags).and_return(['Spider', 'Aragog'])
     end
 
     it 'prints the id of the network to stdout' do
@@ -44,6 +46,11 @@ describe 'sl networks list' do
     it 'prints the name of the network to stdout' do
       expect { networks.list }.to output(/ \| network_11/).to_stdout
       expect { networks.list }.to output(/ \| network_42/).to_stdout
+    end
+
+    it 'prints the tags of the network to stdout' do
+      expect { networks.list }.to output(/ \| Spider, Kumonga/).to_stdout
+      expect { networks.list }.to output(/ \| Spider, Aragog/).to_stdout
     end
   end
 end

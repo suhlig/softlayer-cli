@@ -12,15 +12,22 @@ module Softlayer
     KNOWN_ATTRIBUTES = %w[id name].freeze
 
     desc 'list', 'Lists all networks'
+    method_options tags: []
     def list
-      if networks.empty?
+      candidates = if options[:tags] && options[:tags].any?
+                     networks.tagged_with(options[:tags])
+                   else
+                     networks
+                   end
+
+      if candidates.empty?
         warn 'No networks found.'
       else
-        rows = networks.map do |s|
-          [s.id, s.name]
+        rows = candidates.map do |s|
+          [s.id, s.name, s.tags.map(&:strip).join(', ')]
         end
 
-        puts Terminal::Table.new(headings: ['ID', 'Name'], rows: rows)
+        puts Terminal::Table.new(headings: ['ID', 'Name', 'Tags'], rows: rows)
       end
     end
 
