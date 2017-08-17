@@ -11,7 +11,7 @@ module Softlayer
     desc 'vpn SUBCOMMAND ...ARGS', 'manage VPN connections'
     subcommand 'vpn', VPN
 
-    desc 'servers SUBCOMMAND ...ARGS', 'manage VPN connections'
+    desc 'servers SUBCOMMAND ...ARGS', 'manage servers'
     subcommand 'servers', Servers
   end
 end
