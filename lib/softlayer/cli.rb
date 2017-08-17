@@ -3,6 +3,7 @@
 require 'thor'
 require 'softlayer/cli/vpn'
 require 'softlayer/cli/servers'
+require 'softlayer/cli/networks'
 
 module Softlayer
   class CLI < Thor
@@ -13,5 +14,8 @@ module Softlayer
 
     desc 'servers SUBCOMMAND ...ARGS', 'manage servers'
     subcommand 'servers', Servers
+
+    desc 'networks SUBCOMMAND ...ARGS', 'manage networks'
+    subcommand 'networks', Networks
   end
 end
