@@ -24,10 +24,10 @@ module Softlayer
         warn 'No networks found.'
       else
         rows = candidates.map do |s|
-          [s.id, s.name, s.tags.map(&:strip).join(', ')]
+          [s.id, s.name, s.datacenter.name, s.network_space, s.tags.map(&:strip).join(', ')]
         end
 
-        puts Terminal::Table.new(headings: ['ID', 'Name', 'Tags'], rows: rows)
+        puts Terminal::Table.new(headings: ['ID', 'Name', 'Data Center', 'Network Space', 'Tags'], rows: rows)
       end
     end
 
